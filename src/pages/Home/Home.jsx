@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import * as clientsService from '../../services/clientsService.js'
 import NavBar from '../../components/NavBar/NavBar.jsx';
 import SideBar from '../../components/SideBar/SideBar.jsx';
+import { Link } from 'react-router-dom';
 
 
 function Home({ user, handleLogout }){
@@ -22,7 +23,9 @@ function Home({ user, handleLogout }){
           {clientsList && clientsList.map((client, idx)=> 
           <a href='#' key={idx} className='border-b w-full py-4 border-black'>
             <div>
-                <h1 className='text-black flex justify-center items-center h-12'>{client.name}</h1>
+                <Link to={'/customer/'+ client._id}>
+                  <h1 className='text-black flex justify-center items-center h-12'>{client.name}</h1>
+                </Link>
             </div>
           </a>
           )}

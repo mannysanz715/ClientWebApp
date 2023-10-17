@@ -15,6 +15,8 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 // services
 import * as authService from './services/authService'
+import CreateNewCustomer from './pages/CreateNewCustomer/CreateNewCustomer'
+import CustomerDetails from './pages/CustomerDetails/CustomerDetails'
 
 // styles
 
@@ -36,7 +38,8 @@ function App() {
   return (
     <div className='bg-sky-400 h-screen'>
       <Routes>
-        <Route path="/" element={<Landing user={user} handleLogout={handleLogout} handleAuthEvt={handleAuthEvt} />} />
+        <Route path="/"
+          element={<Landing user={user} handleLogout={handleLogout} handleAuthEvt={handleAuthEvt} />} />
 
         <Route
           path="/profiles"
@@ -46,6 +49,12 @@ function App() {
             </ProtectedRoute>
           }
         />
+          <Route
+            path="/new-customer"
+            element={
+            <CreateNewCustomer user={user}/>
+          } 
+          />
         <Route
           path="/auth/signup"
           element={<Signup handleAuthEvt={handleAuthEvt} />}
@@ -59,6 +68,14 @@ function App() {
           element={
             <ProtectedRoute user={user}>
               <ChangePassword handleAuthEvt={handleAuthEvt} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/customer/:id"
+          element={
+            <ProtectedRoute user={user}>
+              <CustomerDetails />
             </ProtectedRoute>
           }
         />
